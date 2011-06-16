@@ -34,11 +34,11 @@ package org.myjerry.as3urlshortner.impl.bitly {
 	 * for url shortening. Currently, OAuth support is not available.
 	 * 
 	 * @author Sandeep Gupta
-	 * @since 1.0 (16 Jun 2011)
+	 * @since 1.0
 	 */
 	public class BitLyShortner implements IUrlShortner {
 		
-		public static const VERSION:String = "v3";
+		private static const VERSION:String = "v3";
 		
 		private static const API_END_POINT:String = 'http://api.bit.ly/';
 		
@@ -59,11 +59,8 @@ package org.myjerry.as3urlshortner.impl.bitly {
 		 * 
 		 * @param username the login name for the http://bit.ly service
 		 * @param password the API key for password service
-		 * @param onComplete <i>not required</i>
-		 * @param onError <i>not required</i>
-		 * @param lazyInitialize <i>not required</i>
 		 */
-		public function authenticate(username:String, password:String, onComplete:Function = null, onError:Function = null, lazyInitialize:Boolean = true):void {
+		public function authenticate(username:String, password:String):void {
 			this._loginName = username;
 			this._apiKey = password;
 		}
@@ -103,8 +100,16 @@ package org.myjerry.as3urlshortner.impl.bitly {
 		/**
 		 * Return the version of the API that this implementation supports.
 		 */
-		public function version():String {
+		public final function get version():String {
 			return VERSION;
+		}
+		
+		public final function get supportsShortening():Boolean {
+			return true;
+		}
+		
+		public final function get supportsExpansion():Boolean {
+			return true;
 		}
 		
 		/**

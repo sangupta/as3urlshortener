@@ -34,7 +34,7 @@ package org.myjerry.as3urlshortner {
 		 * Provide authentication parameters in case either the API does not support anonymous shortening,
 		 * or one wishes to use their registered account.
 		 */
-		function authenticate(username:String, password:String, onComplete:Function = null, onError:Function = null, lazyInitialize:Boolean = true):void;
+		function authenticate(username:String, password:String):void;
 		
 		/**
 		 * Given a long URL, return the short URL.
@@ -47,9 +47,19 @@ package org.myjerry.as3urlshortner {
 		function expandUrl(shortUrl:String, onComplete:Function = null, onError:Function = null):void;
 		
 		/**
+		 * Indicates whether the implementing class/service supports shortening of URLs.
+		 */
+		function get supportsShortening():Boolean;
+		
+		/**
+		 * Indicates whether the implementing class/service supports expansion of short URLs.
+		 */
+		function get supportsExpansion():Boolean;
+		
+		/**
 		 * Returns the version of the API that the implementation supports.
 		 */
-		function version():String;
+		function get version():String;
 		
 		/**
 		 * Returns whether the implementation supports anonymous shortening of a URL or not.
