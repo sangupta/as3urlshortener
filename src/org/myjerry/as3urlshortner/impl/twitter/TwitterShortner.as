@@ -50,6 +50,7 @@ package org.myjerry.as3urlshortner.impl.twitter {
 		 * 
 		 * @param username <i>not used</i>
 		 * @param password <i>not used</i>
+		 * @throw IllegalOperationError for authentication is not supported.
 		 */
 		public function authenticate(username:String, password:String):void {
 			throw new IllegalOperationError('Twitter shortner not yet supports shortening.');
