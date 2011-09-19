@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="org.myjerry.as3urlshortner.IUrlShortner"/>
+    <classEntry path="org.myjerry.as3urlshortner.UrlShortenerResponse"/>
+    <classEntry path="org.myjerry.as3urlshortner.impl.bitly.BitLyResponse"/>
+    <classEntry path="org.myjerry.as3urlshortner.impl.tinyurl.TinyUrlShortener"/>
+    <classEntry path="org.myjerry.as3urlshortner.impl.cligs.CligsShortener"/>
+    <classEntry path="org.myjerry.as3urlshortner.impl.isgd.IsgdShortener"/>
+    <classEntry path="org.myjerry.as3urlshortner.impl.shortr.ShortrShortener"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
