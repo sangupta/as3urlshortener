@@ -19,7 +19,7 @@
 			<arg value="-metadata.creator" />
 			<arg value="${user.name}" />
 			<arg value="-metadata.title" />
-			<arg value="as3utils | myJerry" />
+			<arg value="as3urlshortener | myJerry" />
 			<arg value="-metadata.date" />
 			<arg value="${BUILD.TIME}" />
 			<arg value="-compiler.optimize" />
