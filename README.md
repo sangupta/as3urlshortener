@@ -1,6 +1,7 @@
 URL Shortening library for ActionScript. Provides convenience classes to shorten URLs via the implemented services, or to expand a given shortened URL.
 
 Currently implementations are available for the following services:
+
 * http://bit.ly
 * http://cli.gs
 * http://goo.gl
