@@ -1,8 +1,8 @@
 /**
  *
  * as3urlshortner - URL shortening library for ActionScript
- * Copyright (C) 2011, myJerry Developers
- * http://www.myjerry.org/as3urlshortner
+ * Copyright (C) 2011-2012, Sandeep Gupta
+ * http://www.sangupta.com/projects/as3urlshortener
  *
  * The file is licensed under the the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
@@ -19,29 +19,26 @@
  *
  */
 
-package org.myjerry.as3urlshortner.impl.twitter {
+package com.sangupta.as3urlshortner.impl.tinyurl {
+	
+	import com.sangupta.as3extensions.web.URLService;
+	import com.sangupta.as3urlshortner.IUrlShortner;
+	import com.sangupta.as3urlshortner.UrlShortenerResponse;
+	import com.sangupta.as3utils.AssertUtils;
+	import com.sangupta.as3utils.WebUtils;
 	
 	import flash.errors.IllegalOperationError;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	import flash.net.URLRequestMethod;
-	
-	import org.myjerry.as3extensions.web.URLService;
-	import org.myjerry.as3urlshortner.IUrlShortner;
-	import org.myjerry.as3urlshortner.UrlShortenerResponse;
-	import org.myjerry.as3utils.AssertUtils;
-	import org.myjerry.as3utils.WebUtils;
 	
 	/**
-	 * Implementation of <code>IUrlShortner</code> that uses Twitter's <code>http://t.co</code> service
+	 * Implementation of <code>IUrlShortner</code> that uses <code>http://tinyurl.com</code> service
 	 * for url expansion. URL shortening is not supported by this implementation. 
 	 * 
 	 * @author Sandeep Gupta
 	 * @since 1.0
 	 */
-	public class TwitterShortner implements IUrlShortner {
+	public class TinyUrlShortener implements IUrlShortner {
 		
-		public function TwitterShortner() {
+		public function TinyUrlShortener() {
 			super();
 		}
 		
@@ -50,21 +47,20 @@ package org.myjerry.as3urlshortner.impl.twitter {
 		 * 
 		 * @param username <i>not used</i>
 		 * @param password <i>not used</i>
-		 * @throw IllegalOperationError for authentication is not supported.
 		 */
 		public function authenticate(username:String, password:String):void {
-			throw new IllegalOperationError('Twitter shortner not yet supports shortening.');
+			throw new IllegalOperationError('TinyURL shortner does not supports authentication.');
 		}
 		
-		public function shortenUrl(url:String, onComplete:Function = null, onError:Function = null):void {
-			throw new IllegalOperationError('Twitter shortner not yet supports shortening.');
+		public function shortenUrl(url:String, onComplete:Function=null, onError:Function=null):void {
+			throw new IllegalOperationError('TinyURL shortner not yet supports shortening.');
 		}
 		
-		public function expandUrl(shortUrl:String, onComplete:Function = null, onError:Function = null):void {
+		public function expandUrl(shortUrl:String, onComplete:Function=null, onError:Function=null):void {
 			if(AssertUtils.isEmptyString(shortUrl)) {
 				throw new ArgumentError('Url to be shortened cannot be empty/null.');
 			}
-
+			
 			new URLService(shortUrl, handleResponse).executeHEAD( { shortUrl: shortUrl, onComplete: onComplete, onError: onError }, false);
 		}
 		
@@ -79,21 +75,20 @@ package org.myjerry.as3urlshortner.impl.twitter {
 			callbackData.onError();
 		}
 		
+		public function get supportsShortening():Boolean {
+			return false;
+		}
+		
+		public function get supportsExpansion():Boolean {
+			return true;
+		}
+		
 		public function get version():String {
 			return 'all';
 		}
 		
-		public final function get supportsShortening():Boolean {
-			return false;
-		}
-		
-		public final function get supportsExpansion():Boolean {
+		public function get supportsAnonymousShortening():Boolean {
 			return true;
 		}
-		
-		public function get supportsAnonymousShortening():Boolean {
-			return false;
-		}
-		
 	}
 }

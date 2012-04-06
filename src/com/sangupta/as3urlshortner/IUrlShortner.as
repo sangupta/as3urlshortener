@@ -1,8 +1,8 @@
 /**
  *
  * as3urlshortner - URL shortening library for ActionScript
- * Copyright (C) 2011, myJerry Developers
- * http://www.myjerry.org/as3urlshortner
+ * Copyright (C) 2011-2012, Sandeep Gupta
+ * http://www.sangupta.com/projects/as3urlshortener
  *
  * The file is licensed under the the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
@@ -19,7 +19,7 @@
  *
  */
 
-package org.myjerry.as3urlshortner {
+package com.sangupta.as3urlshortner {
 	
 	
 	/**

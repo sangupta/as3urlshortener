@@ -1,8 +1,8 @@
 /**
  *
  * as3urlshortner - URL shortening library for ActionScript
- * Copyright (C) 2011, myJerry Developers
- * http://www.myjerry.org/as3urlshortner
+ * Copyright (C) 2011-2012, Sandeep Gupta
+ * http://www.sangupta.com/projects/as3urlshortener
  *
  * The file is licensed under the the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
@@ -19,33 +19,30 @@
  *
  */
 
-package org.myjerry.as3urlshortner.impl.shortr {
+package com.sangupta.as3urlshortner.impl.isgd {
+	
+	import com.sangupta.as3extensions.web.URLService;
+	import com.sangupta.as3urlshortner.IUrlShortner;
+	import com.sangupta.as3urlshortner.UrlShortenerResponse;
+	import com.sangupta.as3utils.AssertUtils;
+	import com.sangupta.as3utils.WebUtils;
 	
 	import flash.errors.IllegalOperationError;
 	
-	import org.myjerry.as3extensions.web.URLService;
-	import org.myjerry.as3urlshortner.IUrlShortner;
-	import org.myjerry.as3urlshortner.UrlShortenerResponse;
-	import org.myjerry.as3utils.AssertUtils;
-	import org.myjerry.as3utils.StringUtils;
-	import org.myjerry.as3utils.WebUtils;
-	
 	/**
-	 * Implementation of <code>IUrlShortner</code> that uses <code>http://shortr.info</code> service
+	 * Implementation of <code>IUrlShortner</code> that uses <code>http://is.gd</code> service
 	 * for url shortening. 
 	 * 
-	 * More information on the API homepage at http://shortr.info/api.php
+	 * More details are available on the API home page at http://is.gd/apishorteningreference.php
 	 * 
 	 * @author Sandeep Gupta
 	 * @since 1.0
 	 */
-	public class ShortrShortener implements IUrlShortner {
+	public class IsgdShortener implements IUrlShortner {
 		
-		private static const VERSION:String = "v1";
+		private static const API_END_POINT:String = 'http://is.gd/create.php?format=simple&url='; 
 		
-		private static const API_END_POINT:String = 'http://shortr.info/make-shortr.php?url=';
-		
-		public function ShortrShortener() {
+		public function IsgdShortener() {
 			super();
 		}
 		
@@ -73,8 +70,7 @@ package org.myjerry.as3urlshortner.impl.shortr {
 		 * Handle webservice response for shortening.
 		 */
 		private function handleShorteningResponse(data:String, callbackData:Object):void {
-			var shortUrl:String = data.substr('SUCCESS::'.length);
-			var response:UrlShortenerResponse = new UrlShortenerResponse(shortUrl, callbackData.longUrl as String);
+			var response:UrlShortenerResponse = new UrlShortenerResponse(data, callbackData.longUrl as String);
 			var onComplete:Function = callbackData.onComplete as Function;
 			if(onComplete != null) {
 				onComplete(response);
@@ -90,7 +86,7 @@ package org.myjerry.as3urlshortner.impl.shortr {
 		}
 		
 		private function handleResponse(statusCode:int, headers:Array, callbackData:Object):void {
-			if(statusCode == 301 || statusCode == 302) {
+			if(statusCode == 301) {
 				var location:String = WebUtils.getHeader(headers, 'location');
 				
 				callbackData.onComplete(new UrlShortenerResponse(callbackData.shortUrl as String, location));

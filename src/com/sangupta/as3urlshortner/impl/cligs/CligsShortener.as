@@ -1,8 +1,8 @@
 /**
  *
  * as3urlshortner - URL shortening library for ActionScript
- * Copyright (C) 2011, myJerry Developers
- * http://www.myjerry.org/as3urlshortner
+ * Copyright (C) 2011-2012, Sandeep Gupta
+ * http://www.sangupta.com/projects/as3urlshortener
  *
  * The file is licensed under the the Apache License, Version 2.0
  * (the "License"); you may not use this file except in compliance with
@@ -19,13 +19,11 @@
  *
  */
 
-package org.myjerry.as3urlshortner.impl.cligs {
-	
-	import org.myjerry.as3extensions.web.URLService;
-	import org.myjerry.as3extensions.web.XMLService;
-	import org.myjerry.as3urlshortner.IUrlShortner;
-	import org.myjerry.as3urlshortner.UrlShortenerResponse;
-	import org.myjerry.as3utils.AssertUtils;
+package com.sangupta.as3urlshortner.impl.cligs {
+	import com.sangupta.as3extensions.web.URLService;
+	import com.sangupta.as3urlshortner.IUrlShortner;
+	import com.sangupta.as3urlshortner.UrlShortenerResponse;
+	import com.sangupta.as3utils.AssertUtils;
 	
 	/**
 	 * Implementation of <code>IUrlShortner</code> that uses <code>http://cli.gs/</code> service
