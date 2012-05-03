@@ -1,3 +1,6 @@
+as3urlshortener
+---------------
+
 URL Shortening library for ActionScript. Provides convenience classes to shorten URLs via the implemented services, or to expand a given shortened URL.
 
 Currently implementations are available for the following services:
@@ -10,12 +13,43 @@ Currently implementations are available for the following services:
 * http://tinyurl.com
 * http://t.co
 
-More information on the project can be found at http://www.sangupta.com/projects/as3urlshortener
+Typical Usage
+-------------
+
+```actionscript
+IUrlShortner shortener = new BitLyShortner(); // can be replaced with any shortening provider available
+  
+public function shortenUrl(url:String):void {
+  // trace the version
+  trace('Shortener API version: ' + shortener.version);
+
+  if(!shortener.supportsAnonymousShortening) {
+    shortener.authenticate(myUserName, myPasswordOrApiKey);
+  }
+  
+  if(shortener.supportsShortening) {
+    shortener.shortenUrl(url, successHandler, errorHandler);
+  }
+}
+
+public function successHandler(response:UrlShortenerResponse):void {
+  trace('Short url is: ' + response.shortUrl);
+  
+  // let's expand this to the full URL via the API
+  if(shortener.supportsExpansion) {
+    shortener.expandUrl(response.shortUrl, successHandler2, errorHandler);
+  }
+}
+
+public function successHandler2(response:UrlShortenerResponse):void {
+  
+}
+```
 
 Versioning
 ----------
 
-For transparency and insight into our release cycle, and for striving to maintain backward compatibility, Bootstrap will be maintained under the Semantic Versioning guidelines as much as possible.
+For transparency and insight into our release cycle, and for striving to maintain backward compatibility, **as3urlshortener** will be maintained under the Semantic Versioning guidelines as much as possible.
 
 Releases will be numbered with the follow format:
 
