@@ -42,7 +42,11 @@ public function successHandler(response:UrlShortenerResponse):void {
 }
 
 public function successHandler2(response:UrlShortenerResponse):void {
-  
+  trace('Original expanded url is: ' + response.longUrl);
+}
+
+public function errorHandler(event:Event):void {
+  trace('error occured during url shortening/expansion.');
 }
 ```
 
